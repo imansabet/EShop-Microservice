@@ -5,9 +5,14 @@ namespace Catalog.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+            builder.Services.AddCarter();
+            builder.Services.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
+            });
 
-            app.MapGet("/", () => "Hello World!");
+            var app = builder.Build();
+            app.MapCarter();
 
             app.Run();
         }
