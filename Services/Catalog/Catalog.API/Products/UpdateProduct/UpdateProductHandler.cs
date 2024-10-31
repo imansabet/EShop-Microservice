@@ -1,5 +1,6 @@
 ﻿using Catalog.API.Products.CreateProduct;
 using Catalog.API.Products.GetProductById;
+using FluentValidation;
 
 namespace Catalog.API.Products.UpdateProduct;
 
@@ -10,6 +11,24 @@ public record UpdateProductCommand
     , decimal Price) : ICommand<UpdateProductResult>;
 
 public record UpdateProductResult(bool IsSuccess);
+
+
+public class UpdateProductCommandValidator
+    : AbstractValidator<UpdateProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(command => command.Id).NotEmpty().WithMessage("Product Id Is Required");
+        RuleFor(command => command.Name)
+            .NotEmpty().WithMessage("Name Is Required")
+            .Length(2, 150).WithMessage("Name must be between 2 & 150 Chars. ");
+        RuleFor(command => command.Price).NotEmpty().WithMessage("Price must be greater than 0.");
+
+    }
+
+}
+
+
 internal class UpdateProductCommandHandler
     (IDocumentSession session, ILogger<UpdateProductCommand> logger)
  : ICommandHandler<UpdateProductCommand, UpdateProductResult>
