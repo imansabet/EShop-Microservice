@@ -1,3 +1,4 @@
+using BuildingBlocks.Behaviors;
 using FluentValidation;
 
 namespace Catalog.API
@@ -11,6 +12,7 @@ namespace Catalog.API
             builder.Services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
+                config.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
 
             builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
