@@ -30,9 +30,6 @@ internal class CreateProductCommandHandler
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-
-        
-
         //Business logic to create a product
         var product = new Product
         {
