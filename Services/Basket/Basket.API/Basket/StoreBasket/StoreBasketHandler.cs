@@ -19,7 +19,7 @@ public class StoreBasketCommandHandler(IBasketRepository repository) : ICommandH
     {
         ShoppingCart cart = command.Cart;
         await repository.StoreBasket(command.Cart, cancellationToken);
-        return new StoreBasketResult(command.Cart.UserName);
+        return new StoreBasketResult(cart.UserName);
     }
 }
   

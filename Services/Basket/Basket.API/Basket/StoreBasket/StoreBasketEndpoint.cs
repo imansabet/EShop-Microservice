@@ -1,4 +1,6 @@
 ﻿
+using Basket.API.Basket.GetBasket;
+
 namespace Basket.API.Basket.StoreBasket;
 
 public record StoreBasketRequest(ShoppingCart Cart);
@@ -14,6 +16,11 @@ public class StoreBasketEndpoint : ICarterModule
                 var result = await sender.Send(command);
                 var response = result.Adapt<StoreBasketResponse>();
                 return Results.Created($"/basket/{response.UserName}", response);
-            });
+            })
+              .WithName("Create Basket")
+              .Produces<GetBasketResponse>(StatusCodes.Status201Created)
+              .ProducesProblem(StatusCodes.Status400BadRequest)
+              .WithSummary("Create Basket")
+              .WithDescription("Create Basket");
     }
 }
