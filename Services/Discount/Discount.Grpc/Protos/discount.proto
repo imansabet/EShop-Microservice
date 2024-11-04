@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option  csharp_namespace = "Discount.Grpc";
+
+package discount;
+
+//discount service defintion
+service DiscountProtoService 
+{
+	//discount CRUD
+	rpc GetDiscount    (GetDiscountRequest)    returns (CoupondModel);
+	rpc CreateDiscount (CreateDiscountRequest) returns (CoupondModel);
+	rpc updateDiscount (UpdateDiscountRequest) returns (CoupondModel);
+	rpc DeleteDiscount (DeleteDiscountRequest) returns (DeleteDiscountResponse);
+}
+
+// Coupon message model
+message CouponModel {
+    int32 id = 1;
+    int32 amount = 2;
+    string productName = 3;
+    string description = 4;
+}
+
+// Requests and responses for CRUD operations
+message GetDiscountRequest {
+    string productName = 1;
+}
+
+message CreateDiscountRequest {
+      CoupondModel coupon = 1;
+}
+
+message UpdateDiscountRequest {
+   CoupondModel coupon = 1;
+}
+
+message DeleteDiscountRequest {
+    string productName = 1;
+}
+
+message DeleteDiscountResponse {
+    bool success = 1;
+}
