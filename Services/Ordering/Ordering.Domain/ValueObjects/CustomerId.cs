@@ -11,7 +11,7 @@ public record CustomerId
         ArgumentNullException.ThrowIfNull(value);
         if(value == Guid.Empty)
         {
-            throw new DomainException("CustomerId cannot be Empty".);
+            throw new DomainException("CustomerId cannot be Empty");
         }
         return new CustomerId(value);
 
