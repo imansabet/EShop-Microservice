@@ -22,13 +22,28 @@ services:
     ports:
         - "5434:5432"    
     volumes:
-      - postgres_basket:/va@r/lib/postgresql/data/      
+      - postgres_basket:/va@r/lib/postgresql/data/ 
+      
+     
   distributedcache:   
      container_name: distributedcache
      restart: always
      ports:
        - "6379:6379"
-      
+
+
+  orderdb:
+     container_name: orderdb
+     environment:
+       - ACCEPT_EULA=Y
+     restart: always
+     ports:
+       - "1433:1433"
+
+
+
+
+
   catalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
