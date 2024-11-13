@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Ordering.Application.Extensions;
 using Ordering.Application.Orders.Queries.GetOrderByName;
 
 namespace Ordering.Application.Orders.Queries.GetOrdersByName;
