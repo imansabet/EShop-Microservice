@@ -4,6 +4,7 @@ using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
+using BuildingBlocks.Messaging.MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,8 +49,11 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
         };
         return handler;
     });
+//Async Communication Services
+builder.Services.AddMessageBroker(builder.Configuration);
 
 
+//cross-cutting services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
