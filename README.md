@@ -5,9 +5,8 @@ About the Project :
 
 This project showcases a fully functional e-commerce application built with a microservices architecture. It demonstrates best practices in software design, scalability, and maintainability. Each service is designed to be independent, highly available, and capable of scaling independently.
 
-This project is inspired by and complements the Udemy course:
+This project is inspired by and complements the Udemy course: https://www.udemy.com/course/microservices-architecture-and-implementation-on-dotnet/?couponCode=BFCPSALE24
 
-Microservices Architecture and Implementation on .NET
 
 Technologies Used:
 
